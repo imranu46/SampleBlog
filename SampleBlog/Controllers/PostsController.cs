@@ -10,7 +10,8 @@ namespace SampleBlog.Controllers
     {
         public ActionResult Index()
         {
-            return Content("Posts Controller returns index Action");
+            return View();
         }
+        
     }
 }

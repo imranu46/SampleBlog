@@ -10,7 +10,7 @@ namespace SampleBlog.Controllers
     {
         public  ActionResult Login()
         {
-            return Content("Login ActionResult in Auth Controller");
+            return View();
         }
     }
 }

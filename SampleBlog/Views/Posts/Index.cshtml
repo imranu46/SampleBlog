@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h1>Index Page</h1>
+<p>There are Three Ways to write text inside C# Code Block</p>
+@{
+    <p>1 - Write inside simple Html with proper tags</p>
+    <text>
+        2 - Write inside &lt;text&gt; and &lt;/text&gt; block.
+        <br />
+    </text>
+    @: 3 - Or write single line of text with &commat;:
+}
+<p>
+    <a href="@Url.RouteUrl("login")"> Click Here</a> to Login
+    <br />
+    @Html.RouteLink("Click Here", "login") to Login
+</p>
+
+@section Scripts
+{
+    <script>
+        alert("Hi");
+    </script>
+
+}
