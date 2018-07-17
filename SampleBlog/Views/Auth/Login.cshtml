@@ -1,6 +1,34 @@
-﻿@{ 
-    ViewBag.Title = "Login"
+﻿@model SampleBlog.ViewModels.AuthLogin
+
+@{ 
+    ViewBag.Title = "Login";
 }
 
 <h1>Login Page</h1>
-    
+
+Value from ViewModel is: @Model.Abc123
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+
+    <div>
+        @Html.LabelFor(x => x.Username)
+        @Html.EditorFor(x => x.Username)
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.Password)
+        @Html.EditorFor(x => x.Password)
+    </div>
+
+    <div>
+        <input type="submit" value="Login" />
+    </div>
+}
+<br /><br />
+<form method="post">
+    <input type="text" name="Username" />
+    <input type="password"  name="Password" />
+    <input type="submit" value="Login" />
+</form>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SampleBlog.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,22 @@ namespace SampleBlog.Controllers
     {
         public  ActionResult Login()
         {
-            return View();
+            return View(new AuthLogin() { Abc123 = "Hey it works...." });
+        }
+
+        [HttpPost]
+        public ActionResult Login(AuthLogin form)
+        {
+            if(ModelState.IsValid == false)
+                return View(form);
+
+            if(form.Username != "username")
+            {
+                ModelState.AddModelError("Username","UserName is not Valid");
+                return View(form);
+            }
+
+            return Content("Form is Validated Successfully");
         }
     }
 }
