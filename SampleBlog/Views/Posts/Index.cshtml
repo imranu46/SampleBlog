@@ -5,6 +5,22 @@
 
 
 <h1>Index Page</h1>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <p>Welcome Back, @User.Identity.Name</p>
+    <a href="@Url.RouteUrl("logout")">Logout</a>
+
+    if( User.IsInRole("admin") )
+    {
+        <a href="@Url.Action("index", "Posts", new {area = "Admin" })">View Posts in Admin</a>
+    }
+}
+else
+{
+    <a href="@Url.RouteUrl("login")">Login</a>
+}
+
 <p>There are Three Ways to write text inside C# Code Block</p>
 @{
     <p>1 - Write inside simple Html with proper tags</p>
