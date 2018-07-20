@@ -1,0 +1,48 @@
+﻿@using System.Web.Optimization
+@{
+    Layout = null;
+}
+
+@helper SelectedTabClass(string tabName)
+{
+    if (ViewData.Values.Contains(tabName))
+    {
+        @: active
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin - Simple Blog</title>
+    @Styles.Render("~/admin/styles")
+</head>
+<body>
+    <div class="container">
+        <ul class="nav nav-pills">
+            <li class="@(ViewBag.SelectedTab == "posts" ? "active" : "")">
+                @Html.ActionLink("Posts", "Index", "Posts", new { area = "admin" }, new { })
+            </li>
+            <li class="@SelectedTabClass("users")">
+                @Html.ActionLink("Users", "Index", "Users", new { area = "admin" }, new { })
+            </li>
+            <li>
+                @Html.RouteLink("Back to Home", "Home")
+            </li>
+        </ul>
+        <h1> Admin Posts Page </h1>
+        <h2>@ViewData["SelectedTab"] @ViewBag.SelectedTab</h2>
+
+        @RenderBody()
+
+    </div>
+
+
+
+
+    @Scripts.Render("~/admin/scripts")
+    @RenderSection("Scripts", false)
+</body>
+</html>
