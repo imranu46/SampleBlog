@@ -16,6 +16,17 @@ namespace SampleBlog
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Database.Configure();
+        }
+        public void Application_BeginRequest()
+        {
+            Database.OpenSession();
+        }
+        public void Application_EndRequest()
+        {
+            Database.CloseSession();
+
         }
     }
 }

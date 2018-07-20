@@ -1,6 +1,7 @@
 ﻿using FluentMigrator;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -22,8 +23,8 @@ namespace SampleBlog.Migrations
                 .WithColumn("name").AsString(128);
 
             Create.Table("role_users")
-                .WithColumn("user_id").AsInt32().ForeignKey("users", "id").OnDelete(System.Data.Rule.Cascade)
-                .WithColumn("role_id").AsInt32().ForeignKey("roles", "id").OnDelete(System.Data.Rule.Cascade);
+                .WithColumn("user_id").AsInt32().ForeignKey("users", "id").OnDelete(Rule.Cascade)
+                .WithColumn("role_id").AsInt32().ForeignKey("roles", "id").OnDelete(Rule.Cascade);
 
 
         }
