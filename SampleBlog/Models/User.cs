@@ -15,7 +15,12 @@ namespace SampleBlog.Models
 
         public virtual string Email { get; set; }
 
-        public virtual string Password { get; set; }
+        public virtual string PasswordHash { get; set; }
+
+        public virtual void SetPassword(string password)
+        {
+            PasswordHash = "Ignore me";
+        }
     }
 
     public class UserMap : ClassMapping<User>
@@ -30,7 +35,7 @@ namespace SampleBlog.Models
 
             Property(x => x.Email, x => x.NotNullable(true));
 
-            Property(x => x.Password, x => {x.Column("password_hash") ; x.NotNullable(true); });
+            Property(x => x.PasswordHash, x => {x.Column("password_hash") ; x.NotNullable(true); });
         }
     }
 }
