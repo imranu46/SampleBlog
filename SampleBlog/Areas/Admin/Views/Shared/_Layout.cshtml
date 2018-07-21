@@ -39,10 +39,14 @@
 
     </div>
 
-
+    <form style="display:none" id="anti-forgery-form">
+        @Html.AntiForgeryToken()
+    </form>
 
 
     @Scripts.Render("~/admin/scripts")
     @RenderSection("Scripts", false)
+
+
 </body>
 </html>
