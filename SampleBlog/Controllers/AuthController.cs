@@ -1,4 +1,6 @@
-﻿using SampleBlog.ViewModels;
+﻿using NHibernate.Linq;
+using SampleBlog.Models;
+using SampleBlog.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +12,23 @@ namespace SampleBlog.Controllers
 {
     public class AuthController : Controller
     {
-        public  ActionResult Login()
+        public ActionResult Login()
         {
-            return View(new AuthLogin() { Abc123 = "Hey it works...." });
+            return View(new AuthLogin() {  });
         }
 
         [HttpPost]
         public ActionResult Login(AuthLogin form, string returnUrl)
         {
-            if(ModelState.IsValid == false)
+            var user = Database.Session.Query<User>().FirstOrDefault(u => u.Username == form.Username);
+
+            if (user == null)
+                SampleBlog.Models.User.FakeHash();
+
+            if (user == null || !user.CheckPassword(form.Password))
+                ModelState.AddModelError("Username", "Username or Password is incorrect");
+
+            if (ModelState.IsValid == false)
                 return View(form);
 
             FormsAuthentication.SetAuthCookie(form.Username, true);
